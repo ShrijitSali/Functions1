@@ -1,6 +1,5 @@
-#use escape char \u to change color of text
+# use escape char \u to change color of text
 import colorama
-
 
 # Some ANSI escape sequences for colours and effects
 BLACK = '\u001b[30m'
@@ -17,17 +16,21 @@ BOLD = '\u001b[1m'
 UNDERLINE = '\u001b[4m'
 REVERSE = '\u001b[7m'
 
-#print(RED, "Red color")
 
-def colour_print(text: str, effect: str) -> None:
+# print(RED, "Red color")
+
+def colour_print(text: str, *effects: str) -> None:
     """
+    added star args
     Print text using ANSI sequence 
     :param text: text to print
-    :param effect: Effect we want
+    :param effects: Effect we want
     :return: 
     """
-    output_string= f"{effect}{text}{RESET}"
+    effect_string = "".join(effects)
+    output_string = f"{effect_string}{text}{RESET}"
     print(output_string)
+
 
 colorama.init()
 colour_print("Hello, Red", RED)
@@ -40,4 +43,5 @@ colour_print("Hello, Bold", BOLD)
 colour_print("Hello, Underline", UNDERLINE)
 colour_print("Hello, Reverse", REVERSE)
 colour_print("Hello, Black", BLACK)
+colour_print("Hello, Red in Bold", RED, BOLD)
 colorama.deinit()
